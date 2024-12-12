@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<RootNamespace>BusinessLogic.Services</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="13.0.1" />
+		<PackageReference Include="FluentValidation" Version="11.9.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\DAL\DataAccess.Entities\DataAccess.Entities.csproj" />
+		<ProjectReference Include="..\..\DAL\DataAccess.Repositories.Abstractions\DataAccess.Repositories.Abstractions.csproj" />
+		<ProjectReference Include="..\..\DAL\DataAccess.Common\DataAccess.Common.csproj" />
+		<ProjectReference Include="..\BusinessLogic.Services.Abstractions\BusinessLogic.Services.Abstractions.csproj" />
+	</ItemGroup>
+
+</Project>

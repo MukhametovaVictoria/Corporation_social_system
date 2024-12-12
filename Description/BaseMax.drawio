@@ -1,0 +1,256 @@
+<mxfile host="Electron" modified="2024-06-24T23:59:58.925Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.5.3 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" version="24.5.3" etag="s6vureZ1FQrkKu8Z98cR" type="device">
+  <diagram name="Страница — 1" id="H5T7A1vWchafERDFFGWC">
+    <mxGraphModel dx="2529" dy="524" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="API GateWay" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="380" y="280" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="Front End" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="380" y="160" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="2" target="3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="510" y="310" as="sourcePoint" />
+            <mxPoint x="560" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="56" value="Сервис Авторизации" style="swimlane;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="1" vertex="1">
+          <mxGeometry x="120" y="480" width="280" height="260" as="geometry">
+            <mxRectangle x="280" y="280" width="280" height="20" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="59" value="Авторизация" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="56" vertex="1">
+          <mxGeometry x="14" y="40" width="256" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="64" value="Смена пароля" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="56" vertex="1">
+          <mxGeometry x="14" y="90" width="256" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="65" value="БД №1: Пользователи и Роли" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeColor=#413B45;fontStyle=1" parent="56" vertex="1">
+          <mxGeometry x="40" y="140" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="66" value="Сервис Ленты Новостей" style="swimlane;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="1" vertex="1">
+          <mxGeometry x="-240" y="480" width="280" height="310" as="geometry">
+            <mxRectangle x="-80" y="320" width="280" height="20" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="67" value="Получение Новостей" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="66" vertex="1">
+          <mxGeometry x="14" y="40" width="256" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="68" value="Публикация Новостей" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="66" vertex="1">
+          <mxGeometry x="14" y="90" width="256" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="70" value="Редактирование Новостей" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="66" vertex="1">
+          <mxGeometry x="14" y="140" width="256" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="71" value="БД №2: Новостная" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeColor=#413B45;fontStyle=1" parent="66" vertex="1">
+          <mxGeometry x="42" y="190" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="72" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="66" target="2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="270" y="490" as="sourcePoint" />
+            <mxPoint x="270" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="73" value="Сервис Личного Кабинета" style="swimlane;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="1" vertex="1">
+          <mxGeometry x="480" y="480" width="280" height="260" as="geometry">
+            <mxRectangle x="490" y="500" width="280" height="20" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="74" value="Просмотр данных пользователя" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="73" vertex="1">
+          <mxGeometry x="14" y="40" width="256" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="75" value="Редактирование данных пользователя" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="73" vertex="1">
+          <mxGeometry x="14" y="90" width="256" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="76" value="БД №3: Профили Пользователей" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeColor=#413B45;fontStyle=1" parent="73" vertex="1">
+          <mxGeometry x="40" y="140" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="78" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="73" target="2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-90" y="490" as="sourcePoint" />
+            <mxPoint x="270" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="79" value="Сервис Тайм Треккинга" style="swimlane;whiteSpace=wrap;html=1;strokeColor=#413B45;startSize=23;" parent="1" vertex="1">
+          <mxGeometry x="840" y="480" width="280" height="260" as="geometry">
+            <mxRectangle x="280" y="280" width="280" height="20" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="80" value="Заполнение затраченного по дням времени пользователя" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="79" vertex="1">
+          <mxGeometry x="14" y="40" width="256" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="82" value="БД №4: Затраченное время" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeColor=#413B45;fontStyle=1" parent="79" vertex="1">
+          <mxGeometry x="42" y="130" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="83" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="79" target="2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="630" y="490" as="sourcePoint" />
+            <mxPoint x="270" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="84" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="56" target="2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="630" y="490" as="sourcePoint" />
+            <mxPoint x="450" y="329.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="86" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=blockThin;startFill=1;" parent="1" source="85" target="56" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="840" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="87" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=block;startFill=1;" parent="1" source="85" target="73" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="88" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=block;startFill=1;" parent="1" source="85" target="79" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="89" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=blockThin;startFill=1;" parent="1" source="85" target="66" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85" value="Rabbit MQ" style="ellipse;whiteSpace=wrap;html=1;strokeColor=#413B45;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="305" y="920" width="270" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="90" value="Сервис Переписки" style="swimlane;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="1" vertex="1">
+          <mxGeometry x="-570" y="480" width="280" height="310" as="geometry">
+            <mxRectangle x="-80" y="320" width="280" height="20" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="91" value="Общение между сотрудниками" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="90" vertex="1">
+          <mxGeometry x="14" y="40" width="256" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="92" value="Групповые чаты" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="90" vertex="1">
+          <mxGeometry x="14" y="90" width="256" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="94" value="БД №5: Чаты" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeColor=#413B45;fontStyle=1" parent="90" vertex="1">
+          <mxGeometry x="42" y="190" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="95" style="edgeStyle=none;html=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;startArrow=blockThin;startFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="85" target="90" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="357.4757656343263" y="940.8720002922878" as="sourcePoint" />
+            <mxPoint x="-90" y="799.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="96" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=blockThin;startFill=1;" parent="1" source="2" target="104" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="367.4757656343263" y="950.8720002922878" as="sourcePoint" />
+            <mxPoint x="-80" y="809.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="97" value="Сервис Уведомлений" style="swimlane;whiteSpace=wrap;html=1;strokeColor=#413B45;startSize=23;" parent="1" vertex="1">
+          <mxGeometry x="1150" y="480" width="280" height="260" as="geometry">
+            <mxRectangle x="280" y="280" width="280" height="20" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="98" value="Уведомления сотрудников" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="97" vertex="1">
+          <mxGeometry x="14" y="40" width="256" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="99" value="БД №6: Уведомления" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeColor=#413B45;fontStyle=1" parent="97" vertex="1">
+          <mxGeometry x="42" y="130" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="101" value="Напоминания о событиях" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="97" vertex="1">
+          <mxGeometry x="14" y="85" width="256" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="102" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=block;startFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="85" target="97" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="529.4031791861312" y="937.6505566278724" as="sourcePoint" />
+            <mxPoint x="990" y="749.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="103" style="edgeStyle=none;html=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;startArrow=block;startFill=1;exitX=1.001;exitY=0.218;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="2" target="97" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="810.0031791861312" y="307.65055662787245" as="sourcePoint" />
+            <mxPoint x="1270.6" y="119.99999999999977" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="104" value="Сервис Отпусков" style="swimlane;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="1" vertex="1">
+          <mxGeometry x="-880" y="480" width="280" height="310" as="geometry">
+            <mxRectangle x="-80" y="320" width="280" height="20" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="105" value="Получение отпусков&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="104" vertex="1">
+          <mxGeometry x="14" y="40" width="256" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="106" value="Бронирование" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="104" vertex="1">
+          <mxGeometry x="14" y="90" width="256" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="107" value="БД №7: Отпуска" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeColor=#413B45;fontStyle=1" parent="104" vertex="1">
+          <mxGeometry x="42" y="190" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="109" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=blockThin;startFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" target="104" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="315.00000000000364" y="970" as="sourcePoint" />
+            <mxPoint x="-350" y="799.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="110" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=blockThin;startFill=1;exitX=0.187;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" edge="1" source="2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="390" y="322.41379310344814" as="sourcePoint" />
+            <mxPoint x="-420" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="111" value="Сервис Интеграции с Telegram" style="swimlane;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="1" vertex="1">
+          <mxGeometry x="-1220" y="480" width="280" height="310" as="geometry">
+            <mxRectangle x="-80" y="320" width="280" height="20" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="112" value="Получение информации о задачах" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="111" vertex="1">
+          <mxGeometry x="14" y="40" width="256" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="113" value="Получение информации о сотрудниках" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="111" vertex="1">
+          <mxGeometry x="14" y="90" width="256" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="114" value="БД №8: Telegram" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeColor=#413B45;fontStyle=1" parent="111" vertex="1">
+          <mxGeometry x="42" y="190" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="115" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=blockThin;startFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" target="111" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="325.00000000000364" y="980" as="sourcePoint" />
+            <mxPoint x="-730" y="799.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="116" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=blockThin;startFill=1;" parent="1" target="111" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="390" y="319.15254237288127" as="sourcePoint" />
+            <mxPoint x="-730" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="117" value="Сервис Трекинга задач" style="swimlane;whiteSpace=wrap;html=1;strokeColor=#413B45;startSize=23;" parent="1" vertex="1">
+          <mxGeometry x="1470" y="480" width="280" height="310" as="geometry">
+            <mxRectangle x="280" y="280" width="280" height="20" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="118" value="Управление задачами" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="117" vertex="1">
+          <mxGeometry x="14" y="40" width="256" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="119" value="БД №9: Проектной работы" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;strokeColor=#413B45;fontStyle=1" parent="117" vertex="1">
+          <mxGeometry x="40" y="200" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="120" value="Управление проектами&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="117" vertex="1">
+          <mxGeometry x="14" y="85" width="256" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="121" value="Управление командами" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#413B45;" parent="117" vertex="1">
+          <mxGeometry x="12" y="135" width="256" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="122" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=block;startFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" target="117" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="584.9999999999959" y="970" as="sourcePoint" />
+            <mxPoint x="1300" y="749.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="123" style="edgeStyle=none;html=1;entryX=0.547;entryY=-0.004;entryDx=0;entryDy=0;startArrow=block;startFill=1;exitX=0.923;exitY=0.594;exitDx=0;exitDy=0;exitPerimeter=0;entryPerimeter=0;" parent="1" target="117" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500.7600000000002" y="313.76" as="sourcePoint" />
+            <mxPoint x="1230" y="490" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

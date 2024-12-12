@@ -1,0 +1,78 @@
+﻿.imgDiv {
+    display: none;
+    max-width: 300px;
+    width: 100%;
+    margin: auto;
+    height: 300px;
+}
+    .imgDiv.block {
+        display: flex;
+        align-items: stretch;
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+.slides {
+    height: 350px;
+}
+a.next-slide-btn {
+    position: absolute;
+    right: 10px;
+    top: 150px;
+    cursor: pointer;
+}
+a.back-slide-btn {
+    position: absolute;
+    left: 10px;
+    top: 150px;
+    cursor: pointer;
+}
+.dots a {
+    padding: 4px;
+}
+.dot {
+    padding: 4px;
+    cursor: pointer;
+}
+    .dot.active:after {
+        background-color: #465cec;
+    }
+    .dot:after {
+        content: '';
+        width: 10px;
+        height: 10px;
+        background-color: #cccccc;
+        display: block;
+        border-radius: 50%;
+    }
+.dots {
+    display: flex;
+    justify-content: center;
+}
+a.next-slide-btn:after {
+    content: '';
+    background-image: url( '/img/right.svg' );
+    width: 35px;
+    height: 35px;
+    display: block;
+}
+a.back-slide-btn:after {
+    content: '';
+    background-image: url( '/img/left.svg' );
+    width: 35px;
+    height: 35px;
+    display: block;
+}
+a.back-slide-btn:hover:after {
+    width: 40px;
+    height: 40px;
+    transition-property: height, width;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out, ease, linear;
+}
+a.next-slide-btn:hover:after {
+    width: 40px;
+    height: 40px;
+    transition-property: height, width;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out, ease, linear;
+}

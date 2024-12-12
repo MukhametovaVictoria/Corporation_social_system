@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<RootNamespace>BusinessLogic.Abstractions</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\DAL\DataAccess.Entities\DataAccess.Entities.csproj" />
+		<ProjectReference Include="..\..\DAL\DataAccess.Common\DataAccess.Common.csproj" />
+		<ProjectReference Include="..\BusinessLogic.Contracts\BusinessLogic.Contracts.csproj" />
+	</ItemGroup>
+
+</Project>

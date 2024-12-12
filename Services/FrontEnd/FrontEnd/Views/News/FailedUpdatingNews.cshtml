@@ -1,0 +1,13 @@
+﻿@{
+    var dict = ((CaptionsBase)ViewData[Constants.CaptionsKey]);
+    if (dict == null)
+        dict = new CaptionsBase();
+    ViewData["Title"] = dict.TitleFailedUpdatingNewsCaption;
+    ViewData["PageTitle"] = dict.PageTitleFailedUpdatingNewsCaption;
+}
+<link rel="stylesheet" href="/css/site.css" />
+<div class="plain-div-with-margin">
+    <h1>@ViewData["Title"]</h1>
+    <img class="ok-fail-img" src="/img/fail.png" alt="Not created Image">
+    <p>@dict.ErrorTillUpdatingNewsCaption</p>
+</div>

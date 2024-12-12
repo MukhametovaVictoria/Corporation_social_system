@@ -1,0 +1,43 @@
+version: '1.0'
+
+services:
+    webapi:
+        image: webapi_image
+        build:
+          context: .
+          dockerfile: Dockerfile
+        ports:
+          - "1000:1000"
+        depends_on:
+          - service-db
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Development
+          - ASPNETCORE_URLS=http://+:1000
+          - DATABASE_HOST=service-db
+          - DATABASE_PORT=1001
+          - DATABASE_USER=postgres
+          - DATABASE_PASSWORD=masterkey
+          - DATABASE_NAME=TimeTrackingWorkSystem
+        networks:
+          - my_network
+          
+    service-db:
+        container_name: postgres_container
+        image: postgres:latest
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: masterkey
+          POSTGRES_DB: TimeTrackingWorkSystem
+          PGDATA: "/var/lib/postgresql/data/pgdata"
+        ports:
+          - "1001:5432"
+        volumes:
+          - pgdata:/var/lib/postgresql/data
+        networks:
+          - my_network
+
+networks:
+  my_network:
+  
+volumes:
+  pgdata:

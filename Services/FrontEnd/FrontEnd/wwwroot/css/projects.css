@@ -1,0 +1,38 @@
+﻿.create-project-div {
+    height: 50px;
+    width: fit-content;
+    padding: 10px 40px;
+    border: solid #dee2e6 1px;
+    border-radius: 5px;
+    background: #f0f0f0;
+}
+.title-row.projects-header{
+    height: 100px;
+}
+.projects-info {
+    height: auto;
+    margin: 0;
+}
+    .projects-info div {
+        padding: 10px;
+        border: solid #efefef 1px;
+    }
+.projects-header p {
+    margin: auto;
+    line-height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.row.projects-header div {
+    border: solid #dee2e6 1px;
+    margin: auto;
+}
+.row.projects-header {
+    height: 50px;
+    margin: 0;
+}
+a.light-gray-button {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}

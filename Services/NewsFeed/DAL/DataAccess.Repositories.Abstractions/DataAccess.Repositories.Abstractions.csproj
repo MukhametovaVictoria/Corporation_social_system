@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>DataAccess.Repositories</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess.Entities\DataAccess.Entities.csproj" />
+	<ProjectReference Include="..\DataAccess.Common\DataAccess.Common.csproj" />
+  </ItemGroup>
+
+</Project>

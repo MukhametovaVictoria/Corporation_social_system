@@ -1,0 +1,14 @@
+﻿@{
+    var dict = ((CaptionsBase)ViewData[Constants.CaptionsKey]);
+    if (dict == null)
+        dict = new CaptionsBase();
+    ViewData["Title"] = dict.TitleUpdatedNewsCaption;
+    ViewData["PageTitle"] = dict.PageTitleUpdatedNewsCaption;
+}
+<link rel="stylesheet" href="/css/site.css" />
+<div class="plain-div-with-margin">
+    <h1>@ViewData["Title"]</h1>
+    <img class="ok-fail-img" src="/img/ok.png" alt="Updated Image">
+    <p>@dict.ItWillBeShownAfterModerationCaption</p>
+</div>
+

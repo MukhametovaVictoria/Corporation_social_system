@@ -1,0 +1,48 @@
+﻿@{
+    var dict = ((CaptionsBase)ViewData[Constants.CaptionsKey]);
+    if (dict == null)
+        dict = new CaptionsBase();
+    ViewData["Title"] = dict.TitleNewsCaption;
+    ViewData["PageTitle"] = dict.PageTitleCreatingNewsCaption;
+    var isAdmin = false;
+    if (ViewData[Constants.IsAdminKey] != null)
+    {
+        bool.TryParse(ViewData[Constants.IsAdminKey].ToString(), out isAdmin);
+    }
+}
+
+@if (isAdmin)
+{
+    <div class="plain-div-with-margin">
+        <form id="creatingForm" method="post" asp-controller="Timesheet" asp-action="CreateProject" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label for="name">@dict.NameProjectCaption</label>
+                <input type="text" class="form-control" id="name" name="Name" required>
+            </div>
+            <div class="form-group">
+                <label for="code">@dict.CodeProjectCaption</label>
+                <input type="text" class="form-control" id="code" name="Code" required>
+            </div>
+            <button type="submit" class="btn btn-primary">@dict.CreateButtonCaprion</button>
+        </form>
+    </div>
+}
+else
+{
+    <div class="plain-div-with-margin">
+        <p>
+            @dict.AccessIsRestrictedCaption
+        </p>
+    </div>
+}
+
+<style>
+    .form-group {
+        margin: 15px 0;
+    }
+
+    #creatingForm{
+        text-align: left;
+    }
+</style>

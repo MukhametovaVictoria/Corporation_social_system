@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<UserSecretsId>237b8f20-547a-4cfa-8c3b-a03ffae330fc</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="13.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+		<PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
+		<PackageReference Include="RestSharp" Version="111.4.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.7.3" />
+		<PackageReference Include="Swashbuckle.Core" Version="5.6.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BLL\BusinessLogic.Services.Abstractions\BusinessLogic.Services.Abstractions.csproj" />
+		<ProjectReference Include="..\BLL\BusinessLogic.Services.Implementations\BusinessLogic.Services.Implementations.csproj" />
+		<ProjectReference Include="..\DAL\DataAccess.Repositories.Abstractions\DataAccess.Repositories.Abstractions.csproj" />
+		<ProjectReference Include="..\DAL\DataAccess.Repositories.Implementations\DataAccess.Repositories.Implementations.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Remove="appsettings.json" />
+		<Content Include="..\.dockerignore">
+		  <Link>.dockerignore</Link>
+		</Content>
+		<None Include="appsettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Include="WebApi.csproj" />
+	</ItemGroup>
+
+
+</Project>

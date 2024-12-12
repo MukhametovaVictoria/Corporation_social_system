@@ -1,0 +1,167 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: left;
+    font-size: 24px;
+}
+
+.week-selector {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.week-item {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    margin-right: 10px;
+    color: #007bff;
+}
+
+    .week-item.active {
+        background-color: #007bff;
+        color: white;
+    }
+
+.table-container {
+    margin: 20px 0;
+    background-color: white;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.input-project {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.btn-transfer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+    .btn-transfer button {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 10px 20px;
+        margin: 0 10px;
+        color: #007bff;
+    }
+
+.btn-submit {
+    text-align: center;
+}
+
+    .btn-submit button {
+        background-color: #ccc;
+        border: none;
+        padding: 10px 20px;
+        color: white;
+        cursor: not-allowed;
+    }
+
+#projectsWindow {
+    display: none;
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+    #projectsWindow .close-window-btn .closebtn {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        text-decoration: none;
+    }
+
+    #projectsWindow.show {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        justify-content: center;
+        background: #00000063;
+    }
+
+.projects-inner {
+    background: #fff;
+    height: 600px;
+    display: inline-block;
+    position: relative;
+    margin: auto;
+}
+
+.close-window-btn {
+    width: 100%;
+    height: 30px;
+}
+
+.create-project-btn {
+    width: 100%;
+    display: flex;
+    text-align: left;
+    padding: 0;
+    border: none;
+}
+
+.title-row {
+    text-align: left;
+    padding: 10px;
+    background: #465cec2b;
+}
+.project_info {
+    padding: 10px 12px;
+}
+
+.projects-section {
+    padding: 20px;
+}
+
+.week-selector-container section {
+    clear: both;
+}
+
+    .week-selector-container section .table-container {
+        padding: 20px;
+        width: 100%;
+        border: 1px solid #ddd;
+        background: #fff;
+        line-height: 1.5em;
+        letter-spacing: 0.3px;
+        color: #444;
+    }
+
+        .week-selector-container section div h2 {
+            margin: 0;
+            letter-spacing: 1px;
+            color: #34495e;
+        }
+
+.week-item a {
+    text-decoration: none;
+}
+
+.week-item.active a{
+    color: #fff;
+}
+
+#timesheet-table a {
+    text-decoration: none;
+}

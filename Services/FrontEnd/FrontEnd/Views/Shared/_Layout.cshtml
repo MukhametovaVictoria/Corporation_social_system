@@ -1,0 +1,147 @@
+@using FrontEnd.Helpers
+@{
+    var dict = ((CaptionsBase)ViewData[Constants.CaptionsKey]);
+    if (dict == null)
+        dict = new CaptionsBase();
+
+    var isAdmin = false;
+    var isAdminStr = this.Context.Request.Cookies[User.Identity.Name + Constants.IsAdminPrefix];
+    if (!String.IsNullOrEmpty(isAdminStr))
+        bool.TryParse(isAdminStr, out isAdmin);
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - @dict.CorporationSocialSystem</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/footer.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/FrontEnd.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <button class="open-sidebar-btn" onclick="openSidebar()">&#9776;</button>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                                <div class="home-page-btn">
+                                    <img src="~/home-page-icon.svg" alt="Icon" />
+                                </div>
+                                <h2>@ViewData["PageTitle"]</h2>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="user-menu">
+                <div class="user-menu-buttons">
+                    <button class="user-btn" id="userBtn">
+                        <img src="https://static.wikia.nocookie.net/angrybirds/images/3/31/Red.png/revision/latest/scale-to-width/360?cb=20241017062330" alt="User">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @ViewData["UserFullName"]
+                        }
+                        else
+                        {
+                            <text>@dict.GuestCaption</text>
+                        }
+                    </button>
+                    <button class="lang-btn" id="langBtn">@ViewData[Constants.LanguageKey]</button>
+                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="user-dropdown" id="userDropdown">
+                        <a class="user-dropdown-item" href="/PersonalAccount">@dict.PersonalAccountMenuCaption</a>
+                        <form class="user-dropdown-item" method="post" action="/Logout">
+                            <button type="submit" style="background:none; border:none; cursor:pointer; color:#007bff; padding:0;">@dict.ExitCaption</button>
+                        </form>
+                    </div>
+                    <div class="lang-dropdown" id="langDropdown">
+                        @foreach(var languageItem in Constants.Langs)
+                        {
+                            <div class="lang-dropdown-item">
+                                @Html.ActionLink(languageItem.Value, "SetLang", "Home", new { language = languageItem.Key }, null)
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </nav>
+    </header>
+
+    <div id="sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">×</a>
+        <a asp-area="" asp-controller="PersonalAccount" asp-action="Index">@dict.PersonalAccountMenuCaption</a>
+        <a asp-area="" asp-controller="Timesheet" asp-action="Index" asp-route-start="@(DateTime.Now.StartOfWeek(DayOfWeek.Monday).ToString("yyyy-MM-dd"))" asp-route-till="@(DateTime.Now.StartOfWeek(DayOfWeek.Monday).AddDays(6).ToString("yyyy-MM-dd"))">@dict.TimesheetMenuCaption</a>
+        <a asp-area="" asp-controller="News" asp-action="Index">@dict.NewsFeedMenuCaption</a>
+        @if (isAdmin)
+        {
+            <a asp-area="" asp-controller="News" asp-action="Moderation">@dict.ModeartionMenuCaption</a>
+        }
+    </div>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="copyright">
+            &copy; 2024 - Команда Умники - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/footer.js" asp-append-version="true"></script>
+    <script>
+        document.getElementById("userBtn").addEventListener("click", function () {
+            const dropdown = document.getElementById("userDropdown");
+            dropdown.classList.toggle("show");
+        });
+
+        document.getElementById("langBtn").addEventListener("click", function () {
+            const dropdown = document.getElementById("langDropdown");
+            dropdown.classList.toggle("show");
+        });
+
+        window.addEventListener("click", function (event) {
+            const dropdown = document.getElementById("userDropdown");
+            const userBtn = document.getElementById("userBtn");
+            const dropdownLang = document.getElementById("langDropdown");
+            const langBtn = document.getElementById("langBtn");
+
+            if (!userBtn.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.remove("show");
+            }
+
+            if (!langBtn.contains(event.target) && !dropdownLang.contains(event.target)) {
+                dropdownLang.classList.remove("show");
+            }
+        });
+
+        function openSidebar() {
+            document.getElementById("sidebar").classList.add('sidebar-open');
+        }
+
+        function closeSidebar() {
+            document.getElementById("sidebar").classList.remove('sidebar-open');
+        }
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

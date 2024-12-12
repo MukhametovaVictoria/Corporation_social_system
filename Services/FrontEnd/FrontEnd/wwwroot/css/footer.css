@@ -1,0 +1,18 @@
+﻿.footer {
+    line-height: 60px;
+    position: fixed;
+    bottom: -100px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+    transition: bottom 0.5s ease;
+}
+
+    .footer.visible {
+        bottom: 0;
+    }

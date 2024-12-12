@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "wwwroot/css/menu-tabs-news.css",
+    "inputFile": "wwwroot/css/menu-tabs-news.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/gallery.css",
+    "inputFile": "wwwroot/css/gallery.scss"
+  }
+]

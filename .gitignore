@@ -1,0 +1,126 @@
+/Services/NewsFeed/.vs
+/Services/NewsFeed/BLL/BusinessLogic.Contracts/.vs
+/Services/NewsFeed/BLL/BusinessLogic.Contracts/bin
+/Services/NewsFeed/BLL/BusinessLogic.Contracts/obj
+/Services/NewsFeed/BLL/BusinessLogic.Services.Abstractions/bin
+/Services/NewsFeed/BLL/BusinessLogic.Services.Abstractions/obj
+/Services/NewsFeed/BLL/BusinessLogic.Services.Implementations/bin
+/Services/NewsFeed/BLL/BusinessLogic.Services.Implementations/obj
+/Services/NewsFeed/BusinessLogic.Contracts/obj
+/Services/NewsFeed/BusinessLogic.Services.Abstractions/obj
+/Services/NewsFeed/BusinessLogic.Services.Implementations/obj
+/Services/NewsFeed/DAL/DataAccess.Common/obj
+/Services/NewsFeed/DAL/DataAccess.Common/bin
+/Services/NewsFeed/DAL/DataAccess.Context/obj
+/Services/NewsFeed/DAL/DataAccess.Context/bin
+/Services/NewsFeed/DAL/DataAccess.Entities/obj
+/Services/NewsFeed/DAL/DataAccess.Entities/bin
+/Services/NewsFeed/DAL/DataAccess.Repositories.Abstractions/obj
+/Services/NewsFeed/DAL/DataAccess.Repositories.Abstractions/bin
+/Services/NewsFeed/DAL/DataAccess.Repositories.Implementations/obj
+/Services/NewsFeed/DAL/DataAccess.Repositories.Implementations/bin
+/Services/NewsFeed/DataAccess.Common/obj
+/Services/NewsFeed/DataAccess.Context/obj
+/Services/NewsFeed/DataAccess.Entities/obj
+/Services/NewsFeed/DataAccess.Repositories.Abstractions/obj
+/Services/NewsFeed/DataAccess.Repositories.Implementations/obj
+/Services/NewsFeed/BusinessLogic.Contracts
+/Services/NewsFeed/DataAccess.Repositories.Implementations
+/Services/NewsFeed/BusinessLogic.Services.Abstractions
+/Services/NewsFeed/BusinessLogic.Services.Implementations
+/Services/NewsFeed/DataAccess.Common
+/Services/NewsFeed/DataAccess.Context
+/Services/NewsFeed/DataAccess.Entities
+/Services/NewsFeed/DataAccess.Repositories.Abstractions
+/Services/NewsFeed/BLL/BusinessLogic.Contracts/BusinessLogic - Backup.Contracts.csproj
+/Services/NewsFeed/BLL/BusinessLogic.Services.Abstractions/BusinessLogic - Backup.Services.Abstractions.csproj
+/Services/NewsFeed/BLL/BusinessLogic.Services.Implementations/BusinessLogic - Backup.Services.Implementations.csproj
+/Services/NewsFeed/DAL/DataAccess.Context/Migrations
+/Services/NewsFeed/DAL/DataAccess.Entities/DataAccess - Backup.Entities.csproj
+/Services/NewsFeed/DAL/DataAccess.Repositories.Abstractions/DataAccess - Backup.Repositories.Abstractions.csproj
+/Services/NewsFeed/DAL/DataAccess.Repositories.Implementations/DataAccess - Backup.Repositories.Implementations.csproj
+/Services/NewsFeed/WebApi/obj
+/Services/NewsFeed/WebApi/WebApi - Backup.csproj
+/Services/NewsFeed/WebApi/bin
+/Services/NewsFeed/DAL/DataAccess.Repositories.Implementations/DataAccess.Repositories.Implementations.csproj.user
+/Services/NewsFeed/DAL/DataAccess.Repositories.Abstractions/DataAccess.Repositories.Abstractions.csproj.user
+/Services/NewsFeed/DAL/DataAccess.Entities/DataAccess.Entities.csproj.user
+/Services/NewsFeed/DAL/DataAccess.Context/DataAccess.Context.csproj.user
+/Services/NewsFeed/DAL/DataAccess.Common/DataAccess.Common.csproj.user
+/Services/NewsFeed/BLL/BusinessLogic.Contracts/BusinessLogic.Contracts.csproj.user
+/Services/NewsFeed/BLL/BusinessLogic.Services.Abstractions/BusinessLogic.Services.Abstractions.csproj.user
+/Services/NewsFeed/BLL/BusinessLogic.Services.Implementations/BusinessLogic.Services.Implementations.csproj.user
+/Services/NewsFeed/WebApi/WebApi.csproj.user
+
+/Services/EmployeeService/.vs
+/Services/EmployeeService/BLL/BusinessLogic.Contracts/.vs
+/Services/EmployeeService/BLL/BusinessLogic.Contracts/bin
+/Services/EmployeeService/BLL/BusinessLogic.Contracts/obj
+/Services/EmployeeService/BLL/BusinessLogic.Services.Abstractions/bin
+/Services/EmployeeService/BLL/BusinessLogic.Services.Abstractions/obj
+/Services/EmployeeService/BLL/BusinessLogic.Services.Implementations/bin
+/Services/EmployeeService/BLL/BusinessLogic.Services.Implementations/obj
+/Services/EmployeeService/BusinessLogic.Contracts/obj
+/Services/EmployeeService/BusinessLogic.Services.Abstractions/obj
+/Services/EmployeeService/BusinessLogic.Services.Implementations/obj
+/Services/EmployeeService/DAL/DataAccess.Context/obj
+/Services/EmployeeService/DAL/DataAccess.Context/bin
+/Services/EmployeeService/DAL/DataAccess.Entities/obj
+/Services/EmployeeService/DAL/DataAccess.Entities/bin
+/Services/EmployeeService/DAL/DataAccess.Repositories.Abstractions/obj
+/Services/EmployeeService/DAL/DataAccess.Repositories.Abstractions/bin
+/Services/EmployeeService/DAL/DataAccess.Repositories.Implementations/obj
+/Services/EmployeeService/DAL/DataAccess.Repositories.Implementations/bin
+/Services/EmployeeService/DataAccess.Context/obj
+/Services/EmployeeService/DataAccess.Entities/obj
+/Services/EmployeeService/DataAccess.Repositories.Abstractions/obj
+/Services/EmployeeService/DataAccess.Repositories.Implementations/obj
+/Services/EmployeeService/BusinessLogic.Contracts
+/Services/EmployeeService/DataAccess.Repositories.Implementations
+/Services/EmployeeService/BusinessLogic.Services.Abstractions
+/Services/EmployeeService/BusinessLogic.Services.Implementations
+/Services/EmployeeService/DataAccess.Context
+/Services/EmployeeService/DataAccess.Entities
+/Services/EmployeeService/DataAccess.Repositories.Abstractions
+/Services/EmployeeService/BLL/BusinessLogic.Contracts/BusinessLogic - Backup.Contracts.csproj
+/Services/EmployeeService/BLL/BusinessLogic.Services.Abstractions/BusinessLogic - Backup.Services.Abstractions.csproj
+/Services/EmployeeService/BLL/BusinessLogic.Services.Implementations/BusinessLogic - Backup.Services.Implementations.csproj
+/Services/EmployeeService/DAL/DataAccess.Context/Migrations
+/Services/EmployeeService/DAL/DataAccess.Entities/DataAccess - Backup.Entities.csproj
+/Services/EmployeeService/DAL/DataAccess.Repositories.Abstractions/DataAccess - Backup.Repositories.Abstractions.csproj
+/Services/EmployeeService/DAL/DataAccess.Repositories.Implementations/DataAccess - Backup.Repositories.Implementations.csproj
+/Services/EmployeeService/WebApi/obj
+/Services/EmployeeService/WebApi/WebApi - Backup.csproj
+/Services/EmployeeService/WebApi/bin
+/Services/EmployeeService/DAL/DataAccess.Repositories.Implementations/DataAccess.Repositories.Implementations.csproj.user
+/Services/EmployeeService/DAL/DataAccess.Repositories.Abstractions/DataAccess.Repositories.Abstractions.csproj.user
+/Services/EmployeeService/DAL/DataAccess.Entities/DataAccess.Entities.csproj.user
+/Services/EmployeeService/DAL/DataAccess.Context/DataAccess.Context.csproj.user
+/Services/EmployeeService/BLL/BusinessLogic.Contracts/BusinessLogic.Contracts.csproj.user
+/Services/EmployeeService/BLL/BusinessLogic.Services.Abstractions/BusinessLogic.Services.Abstractions.csproj.user
+/Services/EmployeeService/BLL/BusinessLogic.Services.Implementations/BusinessLogic.Services.Implementations.csproj.user
+/Services/EmployeeService/WebApi/WebApi.csproj.user
+## Ignore Visual Studio temporary files, build results, and
+## files generated by popular Visual Studio add-ons.
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific files (MonoDevelop/Xamarin Studio)
+*.userprefs
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+.vs

@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DAL\DA.Common\DA.Common.csproj" />
+    <ProjectReference Include="..\..\DAL\DA.Context\DA.Context.csproj" />
+    <ProjectReference Include="..\..\DAL\DA.Entities\DA.Entities.csproj" />
+    <ProjectReference Include="..\..\DAL\DA.Repositories.Abstractions\DA.Repositories.Abstractions.csproj" />
+    <ProjectReference Include="..\BS.Contracts\BS.Contracts.csproj" />
+    <ProjectReference Include="..\BS.Services.Abstractions\BS.Services.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

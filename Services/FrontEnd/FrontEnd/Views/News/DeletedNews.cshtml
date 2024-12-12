@@ -1,0 +1,13 @@
+﻿@{
+    var dict = ((CaptionsBase)ViewData[Constants.CaptionsKey]);
+    if (dict == null)
+        dict = new CaptionsBase();
+    ViewData["Title"] = dict.TitleDeletedNewsCaption;
+    ViewData["PageTitle"] = dict.PageTitleDeletedNewsCaption;
+}
+<link rel="stylesheet" href="/css/site.css" />
+<div class="plain-div-with-margin">
+    <h1>@ViewData["Title"]</h1>
+    <img class="ok-fail-img" src="/img/ok.png" alt="Deleted Image">
+</div>
+

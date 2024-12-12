@@ -1,0 +1,1 @@
+CREATE DATABASE "TimeTrackingSystem" WITH OWNER = "postgres" ENCODING = 'UTF8';

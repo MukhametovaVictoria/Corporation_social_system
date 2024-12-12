@@ -1,0 +1,36 @@
+﻿@{
+    var dict = ((CaptionsBase)ViewData[Constants.CaptionsKey]);
+    if (dict == null)
+        dict = new CaptionsBase();
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@dict.ProblemRequestSucceededCaption</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/footer.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/bg.css" asp-append-version="true">
+</head>
+<body class="bg">
+    <div class="login-container">
+        <h1>@dict.ProblemRequestSucceededCaption</h1>
+        <p>
+            @dict.WeAnswerLaterByEmailCaption
+        </p>
+        <a asp-area="" asp-controller="Login" asp-action="Login">@dict.BackCaption</a>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="copyright">
+            &copy; 2024 - Команда Умники - <a asp-area="" asp-controller="Home" asp-action="Privacy">@dict.PrivacyCaption</a>
+        </div>
+    </footer>
+
+    <script src="~/js/footer.js" asp-append-version="true"></script>
+</body>
+</html>

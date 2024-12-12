@@ -1,0 +1,170 @@
+﻿@{
+    var dict = ((CaptionsBase)ViewData[Constants.CaptionsKey]);
+    if (dict == null)
+        dict = new CaptionsBase();
+    ViewData["Title"] = dict.TitleNewsCaption;
+    ViewData["PageTitle"] = dict.PageTitleUpdatingNewsCaption;
+
+    var createNewsViewModel = (CreateNewsViewModel)ViewData[Constants.CreateNewsViewModelKey];
+}
+
+<link rel="stylesheet" href="/css/news.css" />
+<link rel="stylesheet" href="/css/newsForms.css" />
+<link href="/css/icon.css" rel="stylesheet" />
+
+<div class="news-menu-wrapper">
+    @if (createNewsViewModel != null && createNewsViewModel.News != null && createNewsViewModel.News.Id != Guid.Empty)
+    {
+        <dialog id="dialog-delete-news" style="width: 500px;height: 200px;text-align: center;border: solid #efefef 1px;border-radius: 5px;">
+            <div id="dialog-mainDiv">
+                <div id="dialog-firstDiv">
+                    <p>@dict.DeleteNewsQuestionCaption</p>
+                    <div id="dialog-button-div">
+                        <button id="dont-delete-news" class="btn">@dict.NoCaption</button>
+                        <form id='deleteNews' method='post' asp-controller='News' asp-action='DeleteNews'>
+                            <input class='form-control' id='newsId' name='newsId' type='hidden' value='@createNewsViewModel.News.Id'>
+                            <button type='submit' class='btn btn-primary'>@dict.YesCaption</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </dialog>
+        <div id="delete-block">
+            <button id="ask-delete-news">@dict.DeleteNewsButtonCaption</button>
+        </div>
+        <form id="updatingForm" method="post" asp-controller="News" asp-action="UpdateNews" enctype="multipart/form-data">
+            <input class="form-control" id="newsId" name="newsId" type="hidden" value="@createNewsViewModel.News.Id">
+            <div class="form-group">
+                <label for="title">@dict.CreatingNewsTitleCaption</label>
+                <input type="text" class="form-control" id="title" name="Title" value="@(createNewsViewModel.News.Title != null ? createNewsViewModel.News.Title : string.Empty)" required>
+            </div>
+            <div class="form-group">
+                <label for="shortDescription">@dict.CreatingNewsShortDescriptionCaption</label>
+                <textarea class="form-control" id="shortDescription" name="ShortDescription" rows="5">@(createNewsViewModel.News.ShortDescription != null ? createNewsViewModel.News.ShortDescription : string.Empty)</textarea>
+            </div>
+            <div class="form-group">
+                <label for="content">@dict.CreatingNewsContentCaption</label>
+                <textarea class="form-control" id="content" name="Content" rows="10" required>@(createNewsViewModel.News.Content != null ? createNewsViewModel.News.Content : string.Empty)</textarea>
+                <label for="toggle-smiles" id="label-for-toggle-smiles">😃</label>
+                <input type="checkbox" id="toggle-smiles">
+                <div class="smiles">
+                    @if (createNewsViewModel.Emoji != null)
+                    {
+                        @foreach (var item in createNewsViewModel.Emoji)
+                        {
+                            <span class="smile" id="@item.Hashcode">
+                                @item.EmojiString
+                            </span>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="pictures">@dict.PicturesCaption</label>
+                <input id="pictures" accept=".jpg,.png,.gif,.jpeg" class="form-control" name="Pictures" type="file" multiple>
+            </div>
+            @if (createNewsViewModel.News.PictureList != null && createNewsViewModel.News.PictureList.Count > 0)
+            {
+                <div class="news-pictures" id="news-pictures">
+                @foreach (var picture in createNewsViewModel.News.PictureList)
+                {
+                    <div class="picture" id="picture_@picture.Id">
+                            <img class="slide" src="data:image/png;base64,@(String.IsNullOrEmpty(picture.ByteAsString) ? Convert.ToBase64String(picture.Data) : picture.ByteAsString)" alt="" />
+
+                            <a href="javascript:void(0)" onclick="deletePic('@picture.Id')">X</a>
+                    </div>
+                }
+                </div>
+            }
+            <div class="form-group">
+                <label for="hashtags">@dict.CreatingNewsHashtagsCaption</label>
+                <input type="text" class="form-control" id="hashtags" name="Hashtags" value="@(createNewsViewModel.News.HashtagList != null && createNewsViewModel.News.HashtagList.Count > 0 ? String.Join(" ", createNewsViewModel.News.HashtagList.Select(x => x.Name).ToList()) : string.Empty)">
+            </div>
+            <button type="submit" class="btn btn-primary">@dict.SaveButtonCaption</button>
+        </form>
+    }
+</div>
+
+<style>
+    #dialog-mainDiv {
+        vertical-align: middle;
+        display: flex;
+        height: 100%;
+    }
+
+    #dialog-firstDiv {
+        margin: auto;
+    }
+
+    #dialog-button-div {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: flex-end;
+        position: absolute;
+        right: 15px;
+        bottom: 15px;
+    }
+
+    #dont-delete-news {
+        margin: 0 10px;
+        border: solid #efefef 1px;
+    }
+
+        #dont-delete-news:hover {
+            background: #efefef;
+        }
+
+    #delete-block {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+        #delete-block #ask-delete-news {
+            padding: 5px 40px;
+            border: solid #efefef 1px;
+            border-radius: 5px;
+        }
+</style>
+
+<script src="/js/jquery.min.js"></script>
+<script type="text/javascript">
+    function deletePic(picId){
+        $.ajax({
+            type: 'POST',
+            data: {
+                pictureId: picId,
+                newsId: '@createNewsViewModel?.News?.Id'
+            },
+            async: true,
+            cache: false,
+            dataType: 'json',
+            url: '@Url.Action("DeletePicture")',
+            error: function (jqXHR, textStatus, errorThrown) { alert(jqXHR.responseText); },
+            success: function () {
+                var pict = document.getElementById('picture_' + picId);
+                pict.parentNode.removeChild(pict);
+            }
+        });
+    }
+
+	$(document).ready(function () {
+		$(".smile").click(function () {
+            var smile = this.innerText;
+            var text = $.trim($("#content").val());
+            $("#content").focus().val(text + ' ' + smile + ' ');
+		});
+
+        var dialog = document.getElementById('dialog-delete-news');
+        $("#ask-delete-news").click(function () {
+            dialog.showModal();
+        });
+        $("#dont-delete-news").click(function () {
+            dialog.close();
+        });
+	});
+</script>

@@ -1,0 +1,292 @@
+﻿@using FrontEnd.Models.Timesheet
+@{
+    var dict = ((CaptionsBase)ViewData[Constants.CaptionsKey]);
+    if (dict == null)
+        dict = new CaptionsBase();
+    ViewData["Title"] = dict.TitleTimesheetCaption;
+    ViewData["PageTitle"] = dict.PageTitleTimesheetCaption;
+
+    var modelData = ViewData[Constants.TimeSheetDataKey] != null ? (TimesheetViewModel)ViewData[Constants.TimeSheetDataKey] : null;
+    var accessRestricted = false;
+    if (modelData == null)
+    {
+        modelData = new TimesheetViewModel();
+        accessRestricted = true;
+    }
+    var timesheetData = modelData.TimesheetData;
+    var projects = modelData.Projects;
+    var allProjects = modelData.AllProjects;
+    var weekDays = modelData.WeekDays;
+    var startDay = modelData.CurrentStartDate;
+    var tillDay = modelData.CurrentTillDate;
+    var months = modelData.Months;
+    var firstStart = modelData.FirstStart;
+    var end = modelData.End;
+    var maxStart = modelData.MaxStart;
+    var maxEnd = modelData.MaxEnd;
+}
+
+<link rel="stylesheet" href="/css/timesheet.css" />
+@if (!accessRestricted)
+{
+    <div class="plain-div-with-margin">
+        <div class="week-selector-container">
+            <div class="week-selector">
+                <button id="left-btn" class="btn btn-light">&#60;</button>
+                <div id="weekContainer" class="week-container">
+                    @for (var count = 0; firstStart.AddDays(count) <= end; count += 7)
+                    {
+                        <div class="week-item @(firstStart.AddDays(count) == startDay ? "active" : string.Empty) ">
+                            <a asp-area="" asp-controller="Timesheet" asp-action="Index" asp-route-start="@(firstStart.AddDays(count).ToString("yyyy-MM-dd"))" asp-route-till="@(firstStart.AddDays(count + 6).ToString("yyyy-MM-dd"))">
+                                @(firstStart.AddDays(count).Day) - @(firstStart.AddDays(count + 6).Day) @(months[firstStart.AddDays(count + 6).Month])
+                            </a>
+                        </div>
+                    }
+                </div>
+                <button id="right-btn" class="btn btn-light">&#62;</button>
+            </div>
+            <section id="timesheet-section">
+                <div class="table-container">
+                    <table id="timesheet-table" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th><button class="project-button" id="openProjects">@dict.OpenProjectsCaption</button></th>
+                                @for (var i = 0; i < 7; i++)
+                                {
+                                    <th>@weekDays[i] @startDay.AddDays(i).ToString("dd.MM")</th>
+                                }
+                                <th>@dict.TotalCaption</th>
+                                <th>@dict.ActionsCaption</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (timesheetData != null && timesheetData.Count > 0)
+                            {
+                                @foreach (var project in timesheetData)
+                                {
+                                    @if (project.Where(x => x.Date >= startDay && x.Date <= tillDay).ToList().Count > 0)
+                                    {
+                                        <tr id="projectLine_@(project[0].ProjectId)">
+                                            <td>@(allProjects?.FirstOrDefault(x => x.Id == project[0].ProjectId)?.Name)</td>
+                                            @foreach (var data in project.Where(x => x.Date >= startDay && x.Date <= tillDay).ToList())
+                                            {
+                                                <td>
+                                                    <div class="timesheet-hours">
+                                                        <form name="updateTime" id="updateTime_@data.Date" method="post" asp-controller="Timesheet" asp-action="Update">
+                                                            <input class="form-control" name="id" id="id_@data.Date" value="@data.Id" type="hidden">
+                                                            <input class="form-control" id="start_@data.Date" name="start" type="hidden" value="@startDay">
+                                                            <input class="form-control" id="till_@data.Date" name="till" type="hidden" value="@tillDay">
+                                                            <select class="timesheet-select" name="time" id="dropdown_@data.Id">
+                                                                @for (var i = 0; i <= 16; i++)
+                                                                {
+                                                                    @if (i == data.TimeAtWork)
+                                                                    {
+                                                                        <option value="@i" selected="selected" class="timesheet-option">@i@dict.HoursCaption</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="@i" class="timesheet-option">@i@dict.HoursCaption</option>
+                                                                    }
+                                                                }
+                                                            </select>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            }
+                                            <td>@(project.Where(x => x.Date >= startDay && x.Date <= tillDay).ToList().Sum(x => x.TimeAtWork))@dict.HoursCaption</td>
+                                            <td>
+                                                @Html.ActionLink(dict.DeleteCaption, "Delete", "Timesheet", new { start = startDay.ToString("yyyy-MM-dd"), till = tillDay.ToString("yyyy-MM-dd"), ids = (project.Where(x => x.Date >= startDay && x.Date <= tillDay).ToList().Select(x => x.Id).ToList()) }, null)
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <div>
+                <a class="light-gray-button" asp-area="" asp-controller="Timesheet" asp-action="Projects">@dict.GoToProjects</a>
+            </div>
+            <!--<div class="btn-transfer">
+                <button>Перенести с прошлой недели</button>
+                <button>Перенести с выбранной недели</button>
+            </div>
+
+            <div class="btn-submit">
+                <button>Отправить все проекты на согласование</button>
+            </div>-->
+
+            <div id="projectsWindow">
+                <div class="projects-inner col-md-8">
+                    <div class="close-window-btn">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeProjectsWindow()">❌</a>
+                    </div>
+                    <div class="section projects-section">
+                        <div class="row title-row">
+                            <div class="col-md-6">@dict.NameProjectCaption</div>
+                            <div class="col-md-6">@dict.CodeProjectCaption</div>
+                        </div>
+                        @if (projects != null && projects.Count > 0)
+                        {
+                            @foreach (var project in projects)
+                            {
+                                <div class="row">
+                                    <form id="createForm_@project.Code" method="post" asp-controller="Timesheet" asp-action="CreateTimesheet">
+                                        <input class="form-control" id="projectId_@project.Code" name="projectId" type="hidden" value="@project.Id">
+                                        <input class="form-control" id="start_@project.Code" name="start" type="hidden" value="@startDay">
+                                        <input class="form-control" id="till_@project.Code" name="till" type="hidden" value="@tillDay">
+                                        <button type="submit" class="create-project-btn" id="submit-creation">
+                                            <div class="col-md-6 project_info">@project.Name</div><div class="col-md-6 project_info">@project.Code</div>
+                                        </button>
+                                    </form>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .project-button {
+            height: 38px;
+            border: solid #dddddd 1px;
+        }
+
+        .timesheet-select {
+            height: 38px;
+            border: solid #dddddd 1px;
+        }
+    </style>
+    <script src="/js/jquery.min.js"></script>
+    <script>
+        document.getElementById("openProjects").addEventListener("click", function () {
+            const projectsWindow = document.getElementById("projectsWindow");
+            projectsWindow.classList.toggle("show");
+        });
+
+        function closeProjectsWindow() {
+            document.getElementById("projectsWindow").classList.remove('show');
+        }
+
+        Date.prototype.addDays = function (days) {
+            var date = new Date(this.valueOf());
+            date.setDate(date.getDate() + days);
+            return date;
+        }
+
+        function getMonthFromDict(date) {
+            if (date.getMonth() == 0) {
+                return '@months[1]';
+            }
+            if (date.getMonth() == 1) {
+                return '@months[2]';
+            }
+            if (date.getMonth() == 2) {
+                return '@months[3]';
+            }
+            if (date.getMonth() == 3) {
+                return '@months[4]';
+            }
+            if (date.getMonth() == 4) {
+                return '@months[5]';
+            }
+            if (date.getMonth() == 5) {
+                return '@months[6]';
+            }
+            if (date.getMonth() == 6) {
+                return '@months[7]';
+            }
+            if (date.getMonth() == 7) {
+                return '@months[8]';
+            }
+            if (date.getMonth() == 8) {
+                return '@months[9]';
+            }
+            if (date.getMonth() == 9) {
+                return '@months[10]';
+            }
+            if (date.getMonth() == 10) {
+                return '@months[11]';
+            }
+            if (date.getMonth() == 11) {
+                return '@months[12]';
+            }
+        }
+
+        function formatDate(d) {
+            var month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
+
+        $(document).ready(function () {
+            cblclick(function (e) {
+                e.preventDefault();
+            })
+
+            var currentStartDate = new Date('@(firstStart.ToString("yyyy-MM-dd"))');
+            var currentEndDate = new Date('@(end.ToString("yyyy-MM-dd"))');
+            var currentStart = new Date('@(startDay.ToString("yyyy-MM-dd"))');
+            var maxStartDate = new Date('@(maxStart.ToString("yyyy-MM-dd"))');
+            var maxEndDate = new Date('@(maxEnd.ToString("yyyy-MM-dd"))');
+
+            $('#left-btn').click(function () {
+                currentStartDate = currentStartDate.addDays(-49);
+                currentEndDate = currentEndDate.addDays(-49);
+                if (currentStartDate.getTime() < maxStartDate.getTime()) {
+                    currentStartDate = maxStartDate;
+                    currentEndDate = maxStartDate.addDays(48);
+                }
+                setNewInnerText();
+            });
+
+            $('#right-btn').click(function () {
+                currentStartDate = currentStartDate.addDays(49);
+                currentEndDate = currentEndDate.addDays(49);
+                if (currentEndDate.getTime() > maxEndDate.getTime()) {
+                    currentEndDate = maxEndDate;
+                    currentStartDate = maxEndDate.addDays(-48);
+                }
+                setNewInnerText();
+            });
+
+            function setNewInnerText() {
+                let innerText = "";
+                for (let count = 0; currentStartDate.addDays(count) <= currentEndDate; count += 7) {
+                    let newDate = currentStartDate.addDays(count);
+                    let newEndDate = currentStartDate.addDays(count + 6);
+                    let isActive = newDate.getTime() === currentStart.getTime() ? "active" : "";
+                    innerText += "<div class=\"week-item " + isActive + "\"><a href=\"/Timesheet?start=" + formatDate(newDate) + "&till=" + formatDate(newEndDate) + "\">";
+                    innerText += newDate.getDate() + "-" + newEndDate.getDate() + " " + getMonthFromDict(newEndDate);
+                    innerText += "</a></div>";
+                }
+                document.getElementById("weekContainer").innerHTML = innerText;
+            }
+
+            $(function () {
+                $("[id^='dropdown']").change(function (e) {
+                    this.form.submit();
+                });
+            });
+        })
+    </script>
+}
+else
+{
+    <div class="plain-div-with-margin">
+        <p>
+            @dict.AccessIsRestrictedCaption
+        </p>
+    </div>
+}

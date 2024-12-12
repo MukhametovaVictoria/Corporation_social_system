@@ -1,0 +1,221 @@
+﻿@{
+    var dict = ((CaptionsBase)ViewData[Constants.CaptionsKey]);
+    if (dict == null)
+        dict = new CaptionsBase();
+    ViewData["Title"] = dict.TitleNewsCaption;
+    ViewData["PageTitle"] = dict.PageTitleSearchNewsCaption;
+
+    var newsListViewModel = (NewsListViewModel)ViewData[Constants.NewsListViewModelKey];
+}
+<link rel="stylesheet" href="/css/news.css" />
+<link rel="stylesheet" href="/css/menu-tabs-news.css" />
+<link href="/css/icon.css" rel="stylesheet" />
+<link href="/css/slider.css" rel="stylesheet" />
+
+<div class="pc-tab">
+    <input checked="checked" id="tab1" type="radio" name="pct" />
+    <input id="tab2" type="radio" name="pct" />
+    <input id="tab3" type="radio" name="pct" />
+    <nav>
+        <ul>
+            <li class="tab1">
+                <label for="tab1">@dict.CreateNewsCaption</label>
+            </li>
+            <li class="tab2">
+                <label for="tab2">@dict.SearchNewsCaption</label>
+            </li>
+            <!--<li class="tab3">
+                <label for="tab3">@dict.WideSearchNewsCaption</label>
+            </li>-->
+        </ul>
+    </nav>
+    <section>
+        <div class="tab1">
+            <a class="more-news light-gray-button" asp-area="" asp-controller="News" asp-action="Create">@dict.GoToCreatingNewsCaption</a>
+        </div>
+        <div class="tab2">
+            @if (newsListViewModel != null)
+            {
+                <form id="searchForm" method="post" asp-controller="News" asp-action="Search">
+                    <input class="form-control" id="page" name="page" type="hidden" value="1">
+                    <div class="form-group">
+                        <label for="title">@dict.SearchPlainFormTitleCaption</label>
+                        <input type="text" class="form-control" id="title" name="title" value="@newsListViewModel.Filters["title"]">
+                    </div>
+                    <div class="form-group">
+                        <label for="authorName">@dict.SearchPlainFormAuthorNameCaption</label>
+                        <input type="text" class="form-control" id="authorName" name="authorName" value="@newsListViewModel.Filters["authorName"]">
+                    </div>
+                    <div class="form-group">
+                        <label for="authorSurname">@dict.SearchPlainFormAuthorSurnameCaption</label>
+                        <input type="text" class="form-control" id="authorSurname" name="authorSurname" value="@newsListViewModel.Filters["authorSurname"]">
+                    </div>
+                    <div class="form-group">
+                        <label for="start">@dict.SearchPlainFormCreatedAtStartCaption</label>
+                        <input type="date" class="form-control" id="start" name="start" value="@(newsListViewModel.Filters["start"] != DateTime.MinValue.ToString("yyyy-MM-dd") ? newsListViewModel.Filters["start"] : string.Empty)">
+                    </div>
+                    <div class="form-group">
+                        <label for="end">@dict.SearchPlainFormCreatedAtTillCaption</label>
+                        <input type="date" class="form-control" id="end" name="end" value="@(newsListViewModel.Filters["end"] != DateTime.MinValue.ToString("yyyy-MM-dd") ? newsListViewModel.Filters["end"] : string.Empty)">
+                    </div>
+                    <div class="form-group">
+                        <label for="hashtags">@dict.SearchPlainFormHashtagsCaption</label>
+                        <input type="text" class="form-control" id="hashtags" name="hashtags" value="@newsListViewModel.Filters["hashtags"]">
+                    </div>
+                    <button type="submit" class="btn btn-primary">@dict.SearchButtonCaption</button>
+                </form>
+            }
+        </div>
+        <!--<div class="tab3">
+        </div>-->
+    </section>
+</div>
+
+<!-- Новости -->
+<div class="news-class-container" id="news-container">
+    <div class="row justify-content-center" id="news-row-container">
+        @if (newsListViewModel != null && newsListViewModel.News != null)
+        {
+            @foreach (var news in newsListViewModel.News)
+            {
+                <div class="col-md-12 col-lg-12">
+                    <div class="news-card card mb-4 shadow-sm">
+                        <!--<img class="card-img-top" src="/img/test/64559-thanks5.png" alt="News Image">-->
+                        <div class="card-body_@news.Id" id="card-body_@news.Id">
+                            @if (news.IsAuthor)
+                            {
+                                <form id='updateNews' method='post' asp-controller='News' asp-action='Update'>
+                                    <input class='form-control' id='newsId' name='newsId' type='hidden' value='@news.Id'>
+                                    <button type='submit' class='pen-update'>✏️</button>
+                                </form>
+                            }
+                            @if (news.PictureList != null && news.PictureList.Count > 0)
+                            {
+                                <div class="slider">
+                                    <div class="slides" id="slides_@news.Id">
+                                        @for (var i = 0; i < news.PictureList.Count; i++)
+                                        {
+                                            <div id="img_@(news.Id)_@i" class="imgDiv @(i == 0 ? "block" : string.Empty)">
+                                                <img class="slide" src="data:image/png;base64,@(String.IsNullOrEmpty(news.PictureList[i].ByteAsString) ? Convert.ToBase64String(news.PictureList[i].Data) : news.PictureList[i].ByteAsString)" alt="" />
+                                            </div>
+                                        }
+                                        <a class="back-slide-btn" onclick="back('@(news.Id)')"></a>
+                                        <a class="next-slide-btn" onclick="next('@(news.Id)')"></a>
+                                        <div id="dots_@(news.Id)" class="dots">
+                                            @for (var i = 0; i < news.PictureList.Count; i++)
+                                            {
+                                                <a onclick="selectImg('@(news.Id)', '@i')">
+                                                    <span id="dot_@(news.Id)_@i" class="dot @(i == 0 ? "active" : string.Empty)"></span>
+                                                </a>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <h5 class="card-title-news">@news.Title</h5>
+                            <p class="card-text-news">@news.ShortDescription</p>
+                            <input type="checkbox" id="cb_@news.Id" class="hide" />
+                            <label for="cb_@news.Id" class="light-gray-button more-text">@dict.MoreButtonCaption</label>
+                            <label for="cb_@news.Id" class="light-gray-button hide-text">@dict.HideButtonCaption</label>
+                            <div>
+                                <p>@news.Content</p>
+                                <small>@news.Hashtags</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="col-md-11 col-lg-11">
+                                    <small class="text-muted date-time-news">@news.CreatedAt</small>
+                                    <small class="text-muted author-news">@news.AuthorFullName</small>
+                                </div>
+                                <div class="col-md-1 col-lg-1">
+                                    <div class="news-wrapper">
+                                        <a href="javascript:void(0)" class="like-button @(news.IsLikedByCurrentUser ? "is-active" : string.Empty) news-id_@news.Id">
+                                            <i class="material-icons not-liked bouncy">favorite_border</i>
+                                            <i class="material-icons is-liked bouncy">favorite</i>
+                                            <span class="like-overlay"></span>
+                                        </a>
+                                    </div>
+                                    <span class="text-muted likes-count_@news.Id">@news.Likes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="row justify-content-center">
+        <a class="more-news load-more light-gray-button" href="javascript:void(0)">@dict.LoadMoreCaption</a>
+    </div>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/news.js"></script>
+<script>
+    $(document).ready(function () {
+        like();
+        var newsIds = getNewsIds('[id^="card-body_"]', '_');
+        var p = @newsListViewModel?.PagingInfo.CurrentPage;
+        var currentFilters = {
+            title: '@newsListViewModel.Filters["title"]',
+            authorName: '@newsListViewModel.Filters["authorName"]',
+            authorSurname: '@newsListViewModel.Filters["authorSurname"]',
+            start: '@newsListViewModel.Filters["start"]',
+            end: '@newsListViewModel.Filters["end"]',
+            hashtags: '@newsListViewModel.Filters["hashtags"]',
+            newsIds: newsIds
+        };
+        $('.load-more').click(function () {
+            currentFilters.page = p + 1;
+            $.ajax({
+                type: 'POST',
+                data: currentFilters,
+                async: true,
+                cache: false,
+                dataType: 'json',
+                url: '@Url.Action("Search")',
+                error: function (jqXHR, textStatus, errorThrown) { alert(jqXHR.responseText); },
+                success: function (data) {
+                    if (data.news.length > 0) {
+
+                        var htmlLine = "";
+                        $.each(data.news, function (index, news) {
+                            var pics = "";
+                            if (news.pictureList != null && news.pictureList.length > 0) {
+                                pics += '<div class=\"slider\"><div class=\"slides" id=\"slides_' + news.id + '\">';
+                                for (var i = 0; i < news.pictureList.length; i++) {
+                                    pics += '<div id=\"img_' + news.id + '_' + i + '\" class=\"imgDiv ' + i == 0 ? "block" : string.Empty + '\" >';
+                                    pics += '<img class=\"slide" src=\"data:image/png;base64,' + news.pictureList[i].byteAsString + '\" alt = \"\" /></div>';
+                                }
+                                pics += '<a class=\"back-slide-btn\" onclick=\"back(' + news.id + ')\"></a>';
+                                pics += '<a class=\"next-slide-btn\" onclick=\"next(' + news.id + ')\"></a></div></div>';
+                                pics += '<div id=\"dots_' + news.id + '\" class=\"dots\">';
+                                for (var j = 0; j < news.pictureList.length; j++) {
+                                    pics += '<a onclick=\"selectImg(\"' + news.id + '\", \"' + j + '\")\">';
+                                    pics += '<span id=\"dot_' + news.id + '_' + j + '\" class=\"dot ' + (j == 0 ? "active" : '') + '\"></span></a>';
+                                }
+                                pics += '</div>';
+                            }
+                            var isAuthor = "";
+                            if (news.isAuthor) {
+                                isAuthor += "<form id='updateNews' method='post' action='/News/Update' >";
+                                isAuthor += "<input class='form-control' id='newsId' name='newsId' type='hidden' value='" + news.id + "' >";
+                                isAuthor += "<button type='submit' class='pen-update' >✏️</button></form>";
+                            }
+                            htmlLine += ("<div class='col-md-12 col-lg-12'><div class='news-card card mb-4 shadow-sm'><div class='card-body_" + news.id + "'>" + isAuthor + pics + "<h5 class='card-title-news'>" + news.title + "</h5>" +
+                                "<p class='card-text-news'>" + news.shortDescription + "</p><input type='checkbox' id='cb_" + news.id + "' class='hide' />" +
+                                "<label for='cb_" + news.id + "' class='light-gray-button more-text'>@dict.MoreButtonCaption</label><label for='cb_" + news.id + "' class='light-gray-button hide-text'>@dict.HideButtonCaption</label>" +
+                                "<div>" + news.content + "</div><div class='d-flex align-items-center'><div class='col-md-11 col-lg-11'><small class='text-muted date-time-news'>" + news.createdAt + "</small>" +
+                                "<small class='text-muted author-news'>" + news.authorFullName + "</small></div><div class='col-md-1 col-lg-1'>" +
+                                "<div class='news-wrapper'><a href='javascript: void(0)' class='like-button " + (news.isLikedByCurrentUser ? "is-active" : '') + " news-id_" + news.id + "'>" +
+                                "<i class='material-icons not-liked bouncy'>favorite_border</i><i class='material-icons is-liked bouncy'>favorite</i>" +
+                                "<span class='like-overlay'></span></a></div><span class='text-muted likes-count_" + news.id + "'>" + news.likes + "</span></div></div></div></div></div>");
+                        });
+                        $("#news-row-container").append(htmlLine);
+                        like();
+                        p++;
+                    }
+                }
+            });
+        });
+    })
+</script>

@@ -1,0 +1,52 @@
+﻿@using FrontEnd.Models.Timesheet
+@{
+    var dict = ((CaptionsBase)ViewData[Constants.CaptionsKey]);
+    if (dict == null)
+        dict = new CaptionsBase();
+    ViewData["Title"] = dict.TitleTimesheetCaption;
+    ViewData["PageTitle"] = dict.PageTitleTimesheetCaption;
+
+    var projects = ViewData[Constants.ProjectsDataKey] != null ? (List<ProjectModel>)ViewData[Constants.ProjectsDataKey] : null;
+    var isAdmin = false;
+    if (ViewData[Constants.IsAdminKey] != null)
+    {
+        bool.TryParse(ViewData[Constants.IsAdminKey].ToString(), out isAdmin);
+    }
+        
+    var accessRestricted = projects == null;
+}
+
+<link rel="stylesheet" href="/css/projects.css" />
+@if (!accessRestricted)
+{
+    <div class="plain-div-with-margin projects">
+        @if (isAdmin)
+        {
+            <div class="create-project-div">
+                <a class="light-gray-button" asp-area="" asp-controller="Timesheet" asp-action="CreateProject">@dict.CreateProjectCaption</a>
+            </div>
+        }
+
+        <div class="row projects-header">
+            <div class="col-md-5"><p>@dict.NameProjectCaption</p></div>
+            <div class="col-md-5"><p>@dict.CodeProjectCaption</p></div>
+            <div class="col-md-2"><p>@dict.TimeCountByProjectCaption</p></div>
+        </div>
+        @foreach (var project in projects)
+        {
+            <div class="row projects-info">
+                <div class="col-md-5 project-name"><p>@project.Name</p></div>
+                <div class="col-md-5 project-code"><p>@project.Code</p></div>
+                <div class="col-md-2 project-time"><p>@(project.TimeTrackers?.Sum(x => x.TimeAtWork))</p></div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="plain-div-with-margin">
+        <p>
+            @dict.AccessIsRestrictedCaption
+        </p>
+    </div>
+}

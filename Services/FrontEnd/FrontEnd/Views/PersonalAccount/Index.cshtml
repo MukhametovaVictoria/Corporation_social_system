@@ -1,0 +1,139 @@
+﻿@using FrontEnd.Models.PersonalAccountModels
+@{
+	var dict = ((CaptionsBase)ViewData[Constants.CaptionsKey]);
+	if (dict == null)
+		dict = new CaptionsBase();
+	ViewData["Title"] = dict.TitlePersonalAccountCaption;
+	ViewData["PageTitle"] = dict.PageTitlePersonalAccountCaption;
+
+	var personalInfo = (EmployeeModelFromPA)ViewData[Constants.PersonalAccountDataKey];
+	var birthday = personalInfo.Birthdate;
+	var empDate = personalInfo.EmploymentDate;
+
+	var birthStr = birthday != null && ((DateTime)birthday).ToString("yyyy-MM-dd") != DateTime.MinValue.ToString("yyyy-MM-dd") ? ((DateTime)birthday).ToString("yyyy-MM-dd") : string.Empty;
+	var empDateStr = empDate != null && ((DateTime)empDate).ToString("dd.MM.yyyy") != DateTime.MinValue.ToString("dd.MM.yyyy") ? ((DateTime)empDate).ToString("dd.MM.yyyy") : string.Empty;
+	var emojiList = (List<EmojiViewModel>)ViewData[Constants.EmojiViewModelListKey];
+}
+
+<link rel="stylesheet" href="/css/personalAccount.css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<div class="plain-div-with-margin">
+<div id="user-profile-2" class="user-profile">
+	<div class="tabbable">
+		<!--<ul class="nav nav-tabs padding-18">
+			<li class="active">
+					<a data-toggle="tab" href="/PersonalAccount?page=0">
+						<i class="green ace-icon fa fa-user bigger-120">✒️</i>
+					@dict.PAProfileCaption
+				</a>
+			</li>
+
+			<li>
+					<a data-toggle="tab" href="/PersonalAccount?page=1">
+						<i class="orange ace-icon fa fa-rss bigger-120">🗨️</i>
+					@dict.PAMineNewsCaption
+				</a>
+			</li>
+
+			<li>
+					<a data-toggle="tab" href="/PersonalAccount?page=2">
+						<i class="blue ace-icon fa fa-users bigger-120">✍</i>
+					@dict.PAModerationNewsCaption
+				</a>
+			</li>
+
+			<li>
+					<a data-toggle="tab" href="/PersonalAccount?page=3">
+						<i class="pink ace-icon fa fa-picture-o bigger-120">📁</i>
+					@dict.PAArchivedNewsCaption
+				</a>
+			</li>
+		</ul>-->
+		@if (personalInfo != null)
+		{				
+			<div class="tab-content-pa no-border padding-24">
+				<div id="home" class="tab-pane in active">
+					<div class="row">
+						<div class ="col-xs-12 col-sm-3 center">
+							<span class="profile-picture">
+								<img class="editable img-responsive" alt=" Avatar" id="avatar2" src="http://bootdey.com/img/Content/avatar/avatar6.png">
+							</span>
+						</div>
+
+						<div class="col-xs-12 col-sm-9 pa-profile-info">
+							<h4 class="blue">
+									<span class="middle">@personalInfo.Firstname @personalInfo.Surname</span>
+							</h4>
+
+							<div class="profile-user-info">
+								<div class="profile-info-row">
+									<div class="profile-info-name">@dict.EmployeeOfficeCaption </div>
+
+									<div class="profile-info-value">
+											<span>@personalInfo.OfficeAddress</span>
+									</div>
+								</div>
+
+								<div class="profile-info-row">
+									<div class="profile-info-name"> @dict.EmployeePositionCaption </div>
+
+									<div class="profile-info-value">
+											<span>@personalInfo.Position</span>
+									</div>
+								</div>
+
+								<div class="profile-info-row">
+									<div class="profile-info-name"> @dict.EmployeeEmploymentDateCaption </div>
+
+									<div class="profile-info-value">
+										<span>@empDateStr</span>
+									</div>
+								</div>
+							</div>
+
+								<form id="updatingForm" method="post" asp-controller="PersonalAccount" asp-action="UpdateInfo">
+									<input class="form-control" id="id" name="Id" type="hidden" value="@personalInfo.Id">
+									<div class="form-group">
+										<label for="start">@dict.EmployeeBirthdayCaption</label>
+										<input type="date" class="form-control" id="birth" name="Birthdate" value="@birthStr">
+									</div>
+									<div class="form-group">
+										<label for="hashtags">@dict.EmployeeEmailCaption</label>
+										<input type="email" class="form-control" id="email" name="MainEmail" value="@personalInfo.MainEmail">
+									</div>
+									<div class="form-group">
+										<label for="hashtags">@dict.EmployeePhoneCaption</label>
+										<input type="text" class="form-control" id="phone" name="MainTelephoneNumber" value="@personalInfo.MainTelephoneNumber">
+									</div>
+									<div class="form-group">
+										<label for="content">@dict.EmployeeAboutCaption</label>
+										<textarea class="form-control" id="content" name="About" rows="10">@personalInfo.About</textarea>
+									</div>
+									<button type="submit" class="btn btn-primary">@dict.SaveButtonCaption</button>
+								</form>
+						</div><!-- /.col -->
+					</div><!-- /.row -->
+				</div>
+			</div>
+		}
+	</div>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$(".smile").click(function () {
+            var smile = this.innerText;
+            var text = $.trim($("#content").val());
+            $("#content").focus().val(text + ' ' + smile + ' ');
+		});
+
+        var dialog = document.getElementById('dialog-delete-news');
+        $("#ask-delete-news").click(function () {
+            dialog.showModal();
+        });
+        $("#dont-delete-news").click(function () {
+            dialog.close();
+        });
+	});
+</script>

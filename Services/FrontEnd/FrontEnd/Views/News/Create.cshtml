@@ -1,0 +1,64 @@
+﻿@{
+    var dict = ((CaptionsBase)ViewData[Constants.CaptionsKey]);
+    if (dict == null)
+        dict = new CaptionsBase();
+    ViewData["Title"] = dict.TitleNewsCaption;
+    ViewData["PageTitle"] = dict.PageTitleCreatingNewsCaption;
+
+    var emojiList = (List<EmojiViewModel>)ViewData[Constants.EmojiViewModelListKey];
+}
+
+<link rel="stylesheet" href="/css/news.css" />
+<link rel="stylesheet" href="/css/menu-tabs-news.css" />
+<link href="/css/icon.css" rel="stylesheet" />
+
+<div class="pc-tab">
+    <form id="creatingForm" method="post" asp-controller="News" asp-action="Create" enctype="multipart/form-data">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label for="title">@dict.CreatingNewsTitleCaption</label>
+            <input type="text" class="form-control" id="title" name="Title" required>
+        </div>
+        <div class="form-group">
+            <label for="shortDescription">@dict.CreatingNewsShortDescriptionCaption</label>
+            <textarea class="form-control" id="shortDescription" name="ShortDescription" rows="5"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="content">@dict.CreatingNewsContentCaption</label>
+            <textarea class="form-control" id="content" name="Content" rows="10" required></textarea>
+            <label for="toggle-smiles" id="label-for-toggle-smiles">😃</label>
+            <input type="checkbox" id="toggle-smiles">
+            <div class="smiles">
+                @if (emojiList != null)
+                {
+                    @foreach (var item in emojiList)
+                    {
+                        <span class="smile" id="@item.Hashcode">
+                            @item.EmojiString
+                        </span>
+                    }
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="pictures">@dict.PicturesCaption</label>
+            <input id="pictures" accept=".jpg,.png,.gif,.jpeg" class="form-control" name="Pictures" type="file" multiple>
+        </div>
+        <div class="form-group">
+            <label for="hashtags">@dict.CreatingNewsHashtagsCaption</label>
+            <input type="text" class="form-control" id="hashtags" name="Hashtags">
+        </div>
+        <button type="submit" class="btn btn-primary">@dict.CreateButtonCaprion</button>
+    </form>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$(".smile").click(function () {
+            var smile = this.innerText;
+            var text = $.trim($("#content").val());
+            $("#content").focus().val(text + ' ' + smile + ' ');
+		});
+	});
+</script>

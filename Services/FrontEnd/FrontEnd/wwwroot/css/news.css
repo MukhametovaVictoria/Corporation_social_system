@@ -1,0 +1,337 @@
+﻿[id^='slider'] {
+    position: relative;
+    width: 618px;
+    height: 246px;
+}
+
+    [id^='slider'] img {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        display: none;
+    }
+
+    [id^='slider'] a {
+        border: 0;
+        display: block;
+    }
+
+.smiles {
+    display: none;
+    text-align: center;
+    max-height: 200px;
+    height: 250px;
+    overflow: auto;
+    background: #fff;
+    border: solid #efefef 1px;
+    margin: 20px 0;
+}
+
+#toggle-smiles {
+    display: none;
+}
+
+    #toggle-smiles:checked ~ .smiles {
+        display: block;
+    }
+
+#label-for-toggle-smiles {
+    top: -30px;
+    left: 8px;
+    position: relative;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.news-class-container .love {
+    font-size: 0.9rem;
+    color: #ff4f8f;
+}
+
+.news-class-container .news-wrapper .like-button {
+    position: relative;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+    .news-class-container .news-wrapper .like-button .like-overlay {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #ff4f8f;
+        transform: scale(0);
+        transition: all 0.4s;
+        z-index: 0;
+    }
+
+    .news-class-container .news-wrapper .like-button i.not-liked {
+        display: block;
+        color: #fff;
+        position: relative;
+        z-index: 1;
+    }
+
+    .news-class-container .news-wrapper .like-button i.is-liked {
+        display: none;
+        color: #fff;
+        position: relative;
+        z-index: 1;
+    }
+
+    .news-class-container .news-wrapper .like-button.is-active .like-overlay {
+        transform: scale(1);
+    }
+
+    .news-class-container .news-wrapper .like-button.is-active i.not-liked {
+        display: none;
+    }
+
+    .news-class-container .news-wrapper .like-button.is-active i.is-liked {
+        display: block;
+    }
+
+@-webkit-keyframes bouncy {
+    from, to {
+        -webkit-transform: scale(1, 1);
+    }
+
+    25% {
+        -webkit-transform: scale(0.9, 1.1);
+    }
+
+    50% {
+        -webkit-transform: scale(1.1, 0.9);
+    }
+
+    75% {
+        -webkit-transform: scale(0.95, 1.05);
+    }
+}
+
+@keyframes bouncy {
+    from, to {
+        transform: scale(1, 1);
+    }
+
+    25% {
+        transform: scale(0.9, 1.1);
+    }
+
+    50% {
+        transform: scale(1.1, 0.9);
+    }
+
+    75% {
+        transform: scale(0.95, 1.05);
+    }
+}
+
+.bouncy {
+    -webkit-animation: bouncy 0.6s;
+    animation: bouncy 0.6s;
+    -webkit-animation-duration: 0.6s;
+    animation-duration: 0.6s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.link-button {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #6dacff;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.4s;
+}
+
+    .link-button img {
+        width: 32px;
+        height: 32px;
+        display: block;
+    }
+
+    .link-button:hover {
+        transform: scale(1.1) rotate(180deg);
+        background: #ff4f8f;
+    }
+
+.material-icons {
+    font-size: 14px !important;
+}
+
+.news-wrapper {
+    display: inline-block;
+}
+
+.news-card {
+    padding: 15px;
+}
+
+.date-time-news {
+    padding-right: 10px;
+}
+
+.author-news {
+    padding-right: 10px;
+}
+
+.more-news {
+    font-size: 16px;
+}
+
+.light-gray-button {
+    text-align: center;
+    text-decoration: none;
+    width: fit-content;
+    text-align: center;
+    padding: 5px 40px;
+    margin-bottom: 10px;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+    color: #6c757d;
+    cursor: pointer;
+}
+
+    .light-gray-button:hover {
+        border: 1px solid rgb(0 0 0 / 40%);
+        color: #212529;
+    }
+
+.hide {
+    display: none;
+}
+
+    .hide + label + label ~ div {
+        display: none;
+    }
+    /* оформляем текст label */
+    .hide + label {
+        display: inline-block;
+    }
+
+        .hide + label + label {
+            display: none;
+        }
+    /* вид текста label при активном переключателе */
+    .hide:checked + label + label {
+        display: inline-block;
+    }
+
+    .hide:checked + label {
+        display: none;
+    }
+        /* когда чекбокс активен показываем блоки с содержанием  */
+        .hide:checked + label + label + div {
+            display: block;
+            padding: 10px;
+        }
+
+.news-menu-wrapper {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.tabs {
+    position: relative;
+    background: #465cec;
+}
+
+    .tabs::before,
+    .tabs::after {
+        content: "";
+        display: table;
+    }
+
+    .tabs::after {
+        clear: both;
+    }
+
+.tab {
+    float: left;
+}
+
+.tab-switch {
+    display: none;
+}
+
+.tab-label {
+    position: relative;
+    display: block;
+    line-height: 2.75em;
+    padding: 0 1.618em;
+    background: #465cec;
+    border-right: 0.125rem solid #3d50c6;
+    color: #fff;
+    cursor: pointer;
+    top: 0;
+    transition: all 0.25s;
+}
+
+    .tab-label:hover {
+        top: -0.25rem;
+        transition: top 0.25s;
+    }
+
+.tab-content {
+    position: absolute;
+    z-index: 1;
+    top: 2.75em;
+    left: 0;
+    padding: 1.618rem;
+    background: #fff;
+    color: #2c3e50;
+    border-bottom: 0.25rem solid #bdc3c7;
+    opacity: 0;
+    transition: all 0.35s;
+}
+
+.tab-switch:checked + .tab-label {
+    background: #fff;
+    color: #2c3e50;
+    border-bottom: 0;
+    border-right: 0.125rem solid #fff;
+    transition: all 0.35s;
+    z-index: 1;
+    top: -0.0625rem;
+}
+
+.tab-switch:checked + label + .tab-content {
+    z-index: 2;
+    opacity: 1;
+    transition: all 0.35s;
+}
+
+#news-container {
+    margin-top: 50px;
+}
+
+.smile {
+    cursor: pointer;
+}
+
+.pen-update {
+    border: none;
+    position: absolute;
+    right: 15px;
+}
