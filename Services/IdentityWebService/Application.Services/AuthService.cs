@@ -4,6 +4,7 @@ using Domain.Entities;
 using Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace Application.Services
 {
@@ -12,12 +13,14 @@ namespace Application.Services
         private readonly IUserRepository _userRepository;
         private readonly IEmailService _emailService;
         private readonly IConfiguration _configuration;
+        private readonly ILogger<AuthService> _logger;
 
-        public AuthService(IUserRepository userRepository, IEmailService emailService, IConfiguration configuration)
+        public AuthService(IUserRepository userRepository, IEmailService emailService, IConfiguration configuration, ILogger<AuthService> logger)
         {
             _userRepository = userRepository;
             _emailService = emailService;
             _configuration = configuration;
+            _logger = logger;
         }
 
         /// <summary>
