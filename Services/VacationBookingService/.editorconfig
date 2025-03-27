@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# S6667: Logging in a catch clause should pass the caught exception as a parameter.
+dotnet_diagnostic.S6667.severity = none
